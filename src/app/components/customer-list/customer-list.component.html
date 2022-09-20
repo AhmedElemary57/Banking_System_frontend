@@ -1,0 +1,30 @@
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title ">Customers</h4>
+          <p class="card-category"> In this table you can find all costumers and there balance </p>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class=" text-primary ">
+              <th >ID</th> <th>Name</th><th>Email</th><th>Balance</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let customer of users | async " routerLink="/customers/{{customer._id}}">
+                <td>{{customer._id}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.balance}}$</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

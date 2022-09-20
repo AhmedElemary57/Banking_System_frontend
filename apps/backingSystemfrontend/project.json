@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "generators": {},
+  "sourceRoot": "apps/backingSystemfrontend/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/backingSystemfrontend",
+        "index": "apps/backingSystemfrontend/src/index.html",
+        "main": "apps/backingSystemfrontend/src/main.ts",
+        "polyfills": "apps/backingSystemfrontend/src/polyfills.ts",
+        "tsConfig": "apps/backingSystemfrontend/tsconfig.app.json",
+        "assets": [
+          "apps/backingSystemfrontend/src/favicon.ico",
+          "apps/backingSystemfrontend/src/assets"
+        ],
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "apps/backingSystemfrontend/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/backingSystemfrontend/src/environments/environment.ts",
+              "with": "apps/backingSystemfrontend/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "backingSystemfrontend:build:production"
+        },
+        "development": {
+          "browserTarget": "backingSystemfrontend:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "backingSystemfrontend:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/backingSystemfrontend/src/test.ts",
+        "polyfills": "apps/backingSystemfrontend/src/polyfills.ts",
+        "tsConfig": "apps/backingSystemfrontend/tsconfig.spec.json",
+        "karmaConfig": "apps/backingSystemfrontend/karma.conf.js",
+        "assets": [
+          "apps/backingSystemfrontend/src/favicon.ico",
+          "apps/backingSystemfrontend/src/assets"
+        ],
+        "styles": [
+          "apps/backingSystemfrontend/src/styles.css"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}

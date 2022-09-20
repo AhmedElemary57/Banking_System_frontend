@@ -1,0 +1,64 @@
+<div class="main-content" >
+  <div class="container-fluid" style="margin-top: 100px">
+
+    <div class="card">
+      <div class="card-header " style="animation-delay: inherit; background-color: lightgray ">
+        <h4 class="card-title">Make a Transaction</h4>
+        <p class="card-category">Create transaction from an account to an other account </p>
+      </div>
+
+      <div class="card-body" style="background-color: darkgray">
+
+        <form [formGroup]="myForm" (ngSubmit)="makeTransaction()">
+
+          <div class="row">
+            <div class="col-md-5">
+              <p>From</p>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="name@example.com"
+                required
+                id="from"
+                formControlName="from"
+              >
+              <span style="color: red;  font-size: x-small;"  *ngIf= "from && !isUser(from) "> The email is invalid </span>
+
+            </div>
+            <div class="col-md-5" style="margin-left: 5px">
+                <p>To</p>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="name@example.com"
+                  formControlName="to"
+                >
+              <span style="color: red;  font-size: x-small;"  *ngIf= "to && !isUser(to) "> The email is invalid </span>
+
+            </div>
+
+            <div class="col-md-4">
+              <p>Amount</p>
+              <input
+                class="form-control"
+                type="number"
+                min="0"
+                aria-label="Number"
+                id="amount"
+                formControlName="amount"
+              >
+            </div>
+          </div>
+          <br/>
+          <button
+            type="submit"
+            class="btn btn-danger"
+             [disabled]="myForm.invalid || !isUser(from) || !isUser(to) || from == to"
+          >Make Transaction</button>
+          <span style="color: red;  font-size: medium;"  *ngIf= "from && to &&from === to"> You can't make a transaction to the same account </span>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
